@@ -24,7 +24,7 @@ class Body extends StatelessWidget {
                 width: kDefaultPadding,
               ),
               FillOutlineButton(
-                // press: (){},
+               press: (){},
                 text: 'Active',
                 isFilled: false,
               )
