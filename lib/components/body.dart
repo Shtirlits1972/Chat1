@@ -1,7 +1,10 @@
 import 'package:chat/components/filled_outline_button.dart';
 import 'package:chat/constants.dart';
 import 'package:chat/models/Chat.dart';
+import 'package:chat/screens/messages/messages_screen.dart';
 import 'package:flutter/material.dart';
+
+import 'chat_card.dart';
 
 class Body extends StatelessWidget {
   const Body({Key key}) : super(key: key);
@@ -21,7 +24,7 @@ class Body extends StatelessWidget {
                 width: kDefaultPadding,
               ),
               FillOutlineButton(
-                press: () {},
+                // press: (){},
                 text: 'Active',
                 isFilled: false,
               )
@@ -31,52 +34,14 @@ class Body extends StatelessWidget {
         Expanded(
             child: ListView.builder(
                 itemCount: chatsData.length,
-                itemBuilder: (context, index) =>
-                    ChatCard(chat: chatsData[index])))
+                itemBuilder: (context, index) => ChatCard(
+                      chat: chatsData[index],
+                      press: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> MessageScreen())),
+                    )))
       ],
     );
   }
 }
 
-class ChatCard extends StatelessWidget {
-  const ChatCard({
-    Key key,
-    this.chat,
-  }) : super(key: key);
+// 
 
-  final Chat chat;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-          horizontal: kDefaultPadding, vertical: kDefaultPadding * 0.75),
-      child: Row(
-        children: [
-          CircleAvatar(
-            radius: 24,
-            backgroundImage: AssetImage(chat.image),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    chat.name,
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  Text(chat.lastMessage, maxLines: 1, overflow: TextOverflow.ellipsis ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
