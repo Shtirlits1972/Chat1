@@ -13,18 +13,18 @@ class Body extends StatelessWidget {
     return Column(
       children: [
         Expanded(
-            child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-          child: ListView.builder(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+            child: ListView.builder(
               itemCount: demeChatMessages.length,
               itemBuilder: (context, index) => Message(
-                    message: demeChatMessages[index],
-                  )),
-        )),
+                message: demeChatMessages[index],
+              ),
+            ),
+          ),
+        ),
         ChatInputField(),
       ],
     );
   }
 }
-
-
